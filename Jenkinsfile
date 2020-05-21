@@ -15,7 +15,7 @@
 }
 */
 
-#This is first Pipeline
+#This is first Pipeline changed
 node {
     stage('scm') {
         git 'https://github.com/ABPracticeRepos/game-of-life.git'
