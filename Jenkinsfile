@@ -1,5 +1,5 @@
 pipeline {
-    agent{label 'MASTER'}      # You can mention specific Agent Name or as any 
+    agent{label 'MASTER'}      ## You can mention specific Agent Name or as any 
     stages {
         stage ('source'){
             steps {
