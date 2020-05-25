@@ -1,3 +1,4 @@
+# Initiaing build from REDHAT Node 
 pipeline {
     agent{ label 'REDHAT' }      
     stages {
@@ -9,6 +10,21 @@ pipeline {
         stage('Package'){
             steps {
                 sh 'mvn package'
+            }
+        }
+    }
+}
+
+# Trigger with PollSCM
+pipeline {
+    agent{ label 'REDHAT' }      
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage('clone and compile') {
+            steps{
+                git branch: 'declarative',
+                url: 'https://github.com/ABPracticeRepos/game-of-life.git'
+                sh 'mvn compile'
             }
         }
     }

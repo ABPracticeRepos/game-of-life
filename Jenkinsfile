@@ -1,12 +1,17 @@
 pipeline {
-    agent{ label 'REDHAT' }      
-    triggers { pollSCM('* * * * *') }
+    agent{ label 'MASTER' }      
+    triggers { 
+        upstream(upstreamProjects: 'sample', threshold: hudson.model.Result.SUCCESS) 
+    }
     stages {
-        stage('clone and compile') {
-            steps{
-                git branch: 'declarative',
-                url: 'https://github.com/ABPracticeRepos/game-of-life.git'
-                sh 'mvn compile'
+        stage ('source'){
+            steps {
+                git 'https://github.com/ABPracticeRepos/game-of-life.git'
+            }
+        }
+        stage('Package'){
+            steps {
+                sh 'mvn package'
             }
         }
     }
