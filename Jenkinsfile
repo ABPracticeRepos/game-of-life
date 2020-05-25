@@ -1,7 +1,18 @@
-node('REDHAT') {
-    stage('scm') {
-        git branch: 'master', 
-        url : 'https://github.com/ABPracticeRepos/game-of-life.git'
+pipeline {
+    agent{ label 'MASTER' }      
+    triggers { 
+        upstream(upstreamProjects: 'sample', threshold: hudson.model.Result.SUCCESS) 
     }
-    
+    stages {
+        stage ('source'){
+            steps {
+                git 'https://github.com/ABPracticeRepos/game-of-life.git'
+            }
+        }
+        stage('Package'){
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
 }
