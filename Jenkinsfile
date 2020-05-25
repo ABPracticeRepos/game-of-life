@@ -1,6 +1,7 @@
-node {
+node('AWSUBUNTU') {
     stage('scm') {
-        git 'https://github.com/ABPracticeRepos/game-of-life.git'
+        git branch: 'master', 
+        url : 'https://github.com/ABPracticeRepos/game-of-life.git'
     }
     
 }
