@@ -1,7 +1,13 @@
-node('REDHAT') {
-    stage('scm') {
-        git branch: 'master', 
-        url : 'https://github.com/ABPracticeRepos/game-of-life.git'
+pipeline {
+    agent{ label 'REDHAT' }      
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage('clone and compile') {
+            steps{
+                git branch: 'declarative',
+                url: 'https://github.com/ABPracticeRepos/game-of-life.git'
+                sh 'mvn compile'
+            }
+        }
     }
-    
 }
