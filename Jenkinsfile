@@ -13,8 +13,7 @@ pipeline {
     stages {
         stage ('source'){
             steps {
-                git url 'https://github.com/ABPracticeRepos/game-of-life.git', 
-                branch: "${param:BRANCH_FOR_BUILD}"
+                git url: 'https://github.com/ABPracticeRepos/game-of-life.git', branch: "${param:BRANCH_FOR_BUILD}"
             }
         }
         stage('Package'){
