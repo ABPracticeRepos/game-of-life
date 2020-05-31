@@ -15,5 +15,3 @@ stages:
             goals: 'package'
             publishJUnitResults: true
             testResultFiles: '**/surefire-reports/*.xml'
-
-
