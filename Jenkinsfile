@@ -16,12 +16,14 @@ pipeline {
                 git url: 'https://github.com/ABPracticeRepos/game-of-life.git', branch: "${param:BRANCH_FOR_BUILD}"
             }
         }
+
         stage('Package'){
             steps {
                 sh 'mvn package'
                 
             }
         }
+
     }
 }
 
